@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>探索京剧与中国功夫 - 北京文化体验</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8C1515', // 深红色作为主色调，代表传统文化和活力
+                        secondary: '#D4AF37', // 金色作为辅助色，代表华丽和尊贵
+                        neutral: {
+                            100: '#F5F5F5',
+                            200: '#E5E5E5',
+                            300: '#D4D4D4',
+                            800: '#262626',
+                            900: '#171717',
+                        }
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'elegant': '0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04)',
+                        'hover': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                    }
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-transform-opacity {
+                transition-property: transform, opacity;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .animate-fade-in {
+                animation: fadeIn 0.8s ease-in-out;
+            }
+            .animate-slide-up {
+                animation: slideUp 0.8s ease-out;
+            }
+            .animate-slide-in {
+                animation: slideIn 0.5s ease-out;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes slideUp {
+                from { transform: translateY(30px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            @keyframes slideIn {
+                from { transform: translateX(-20px); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-neutral-100 text-neutral-800">
+    <!-- 导航栏 -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+        <div class="bg-white/90 backdrop-blur-md shadow-sm">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16 md:h-20">
+                    <div class="flex items-center">
+                        <a href="#" class="flex items-center space-x-2">
+                            <span class="text-primary text-2xl"><i class="fas fa-university"></i></span>
+                            <span class="font-bold text-xl md:text-2xl text-neutral-900">北京文化体验</span>
+                        </a>
+                    </div>
+                    
+                    <!-- 桌面导航 -->
+                    <nav class="hidden md:flex space-x-8">
+                        <a href="#peking-opera" class="text-neutral-800 hover:text-primary font-medium transition-colors duration-200">京剧</a>
+                        <a href="#theatres" class="text-neutral-800 hover:text-primary font-medium transition-colors duration-200">剧院</a>
+                        <a href="#kungfu" class="text-neutral-800 hover:text-primary font-medium transition-colors duration-200">功夫</a>
+                        <a href="#red-theatre" class="text-neutral-800 hover:text-primary font-medium transition-colors duration-200">红剧场</a>
+                        <a href="#info" class="text-neutral-800 hover:text-primary font-medium transition-colors duration-200">演出信息</a>
+                    </nav>
+                    
+                    <!-- 移动端菜单按钮 -->
+                    <div class="md:hidden">
+                        <button id="menu-toggle" class="text-neutral-800 hover:text-primary focus:outline-none">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg animate-slide-down">
+            <div class="px-4 py-3 space-y-3">
+                <a href="#peking-opera" class="block text-neutral-800 hover:text-primary font-medium py-2 transition-colors duration-200">京剧</a>
+                <a href="#theatres" class="block text-neutral-800 hover:text-primary font-medium py-2 transition-colors duration-200">剧院</a>
+                <a href="#kungfu" class="block text-neutral-800 hover:text-primary font-medium py-2 transition-colors duration-200">功夫</a>
+                <a href="#red-theatre" class="block text-neutral-800 hover:text-primary font-medium py-2 transition-colors duration-200">红剧场</a>
+                <a href="#info" class="block text-neutral-800 hover:text-primary font-medium py-2 transition-colors duration-200">演出信息</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://picsum.photos/id/1035/1920/1080" alt="京剧表演" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/50"></div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="text-[clamp(2.5rem,6vw,4.5rem)] font-bold text-white mb-6 animate-fade-in text-shadow leading-tight">
+                探索<span class="text-secondary">京剧</span>与<span class="text-secondary">中国功夫</span>
+            </h1>
+            <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 max-w-2xl mx-auto mb-10 animate-slide-up delay-100">
+                体验千年文化精髓，感受传统艺术魅力
+            </p>
+            <div class="animate-slide-up delay-200">
+                <a href="#peking-opera" class="inline-block bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    开始探索 <i class="fas fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-0 right-0 text-center z-10 animate-bounce">
+            <a href="#peking-opera" class="text-white/80 hover:text-white">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 京剧介绍 -->
+    <section id="peking-opera" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-neutral-900 mb-4 animate-fade-in">京剧 - 中国国粹</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-neutral-700 text-lg">
+                    说到京剧，大多数中国人会想到国粹、传统文化、绚丽的服饰和妆容等关键词。
+                    有些人甚至能哼上几句，或谈论他们喜爱的艺术家，但对大多数人来说，
+                    它仍然是一种与日常生活保持距离的经典艺术形式。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in" data-scroll>
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-4">历史与魅力</h3>
+                    <p class="text-neutral-700 mb-4 leading-relaxed">
+                        然而，仅仅一个世纪前，京剧的受欢迎程度不亚于今天的流行音乐，而艺术家们则受到大量粉丝的欢迎和喜爱，他们愿意花大价钱购买一张演出门票。
+                    </p>
+                    <p class="text-neutral-700 mb-4 leading-relaxed">
+                        尽管京剧魅力非凡，但多年来，它逐渐衰落并从大多数中国人的日常生活中淡出。然而，艺术家们从未停止努力，试图让它恢复昔日的辉煌。
+                    </p>
+                    <p class="text-neutral-700 leading-relaxed">
+                        京剧或许是本土文化最原始的表达形式。它是一种多维艺术，融合了歌唱、音乐、舞蹈和杂技。表演者身着精致的服装，化着独特的妆容，这些服饰和妆容能区分他们从农民到皇帝的角色，以及从无私到自私的性格特征。歌手由中国传统乐器组成的管弦乐队伴奏，包括二胡、京胡、琵琶、鼓和锣。故事情节则基于著名的神话、广为人知的故事和历史事件。
+                    </p>
+                </div>
+                <div class="relative overflow-hidden rounded-xl shadow-elegant hover:shadow-hover transition-all duration-500 animate-slide-up" data-scroll>
+                    <img src="https://picsum.photos/id/1041/600/800" alt="京剧表演" class="w-full h-auto transform hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 text-white">
+                            <h4 class="font-semibold text-xl mb-2">京剧表演</h4>
+                            <p class="text-white/80">体验传统艺术的魅力与精髓</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 剧院介绍 -->
+    <section id="theatres" class="py-20 bg-neutral-100">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-neutral-900 mb-4">著名剧院</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-neutral-700 text-lg">
+                    北京有许多著名的剧院，其中一些是欣赏京剧和其他表演艺术的绝佳场所。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- 国家大剧院 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-elegant hover:shadow-hover transition-all duration-300 transform hover:-translate-y-1 animate-fade-in" data-scroll>
+                    <div class="relative h-64">
+                        <img src="https://picsum.photos/id/1031/800/600" alt="国家大剧院" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-primary text-white text-sm font-medium py-1 px-3 rounded-full">
+                            推荐
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-neutral-900 mb-2">国家大剧院</h3>
+                        <p class="text-neutral-700 mb-4">
+                            国家大剧院（NCPA），俗称"巨蛋"，是一座位于北京的艺术中心，包含一个歌剧院。它是亚洲最大的剧院综合体。主体建筑包含三个表演场馆：歌剧院、音乐厅和戏剧院。此外，该中心还有水下走廊、地下车库、人工湖和绿地。现在它被认为是北京最深的建筑，最深点为-106.6英尺（-32.5米），相当于10层楼的高度。国家大剧院以其椭圆形的外观与其周围环境形成鲜明对比，非常引人注目。
+                        </p>
+                        <p class="text-neutral-700 mb-4">
+                            国家大剧院经常上演交响乐、舞蹈表演、芭蕾舞、戏剧、歌剧和其他各种表演。如果时间允许，你可以欣赏任何你喜欢的表演。国家大剧院的参观之旅包括艺术展览、主题活动以及设施参观。在这里，你既可以欣赏宏伟的建筑风格，也可以享受主题展览的深厚艺术氛围。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 梅兰芳大剧院 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-elegant hover:shadow-hover transition-all duration-300 transform hover:-translate-y-1 animate-fade-in delay-100" data-scroll>
+                    <div class="relative h-64">
+                        <img src="https://picsum.photos/id/1040/800/600" alt="梅兰芳大剧院" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-neutral-900 mb-2">梅兰芳大剧院</h3>
+                        <p class="text-neutral-700 mb-4">
+                            作为北京最好的歌剧院之一，梅兰芳大剧院以杰出的京剧大师梅兰芳（1894~1961）命名。整个建筑完美融合了传统歌剧院和现代建筑风格，拥有1008个座位。观众席分布在四层，确保每个人都能很好地观看表演。
+                        </p>
+                        <div class="flex items-center mt-4">
+                            <div class="flex">
+                                <i class="fas fa-star text-secondary"></i>
+                                <i class="fas fa-star text-secondary"></i>
+                                <i class="fas fa-star text-secondary"></i>
+                                <i class="fas fa-star text-secondary"></i>
+                                <i class="fas fa-star text-secondary"></i>
+                            </div>
+                            <span class="ml-2 text-neutral-600">5.0 (128 评价)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功夫介绍 -->
+    <section id="kungfu" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative overflow-hidden rounded-xl shadow-elegant hover:shadow-hover transition-all duration-500 animate-fade-in" data-scroll>
+                    <img src="https://picsum.photos/id/1039/600/800" alt="中国功夫表演" class="w-full h-auto transform hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 text-white">
+                            <h4 class="font-semibold text-xl mb-2">中国功夫</h4>
+                            <p class="text-white/80">展现力量与优雅的完美结合</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="animate-slide-up" data-scroll>
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-4">中国功夫 - 武术的艺术</h3>
+                    <p class="text-neutral-700 mb-4 leading-relaxed">
+                        功夫，或武术，其意义超越了武术世界。它是人们向往剑客生活的原因之一，也是战争年代国家力量的象征。
+                    </p>
+                    <p class="text-neutral-700 mb-4 leading-relaxed">
+                        也许，国际社会主要是通过李小龙主演的动作电影了解功夫的。
+                    </p>
+                    <p class="text-neutral-700 mb-4 leading-relaxed">
+                        中国功夫，也被称为武术或中国武术，是中国传统文化中最著名的例子之一。
+                    </p>
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-2 rounded-full mr-4">
+                                <i class="fas fa-fist-raised text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-neutral-900 mb-1">历史悠久</h4>
+                                <p class="text-neutral-700">中国功夫有着数千年的历史，是中国传统文化的重要组成部分。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-2 rounded-full mr-4">
+                                <i class="fas fa-heart text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-neutral-900 mb-1">身心修炼</h4>
+                                <p class="text-neutral-700">功夫不仅是身体的锻炼，更是心灵的修炼，培养毅力和专注力。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-2 rounded-full mr-4">
+                                <i class="fas fa-globe-asia text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-neutral-900 mb-1">国际影响</h4>
+                                <p class="text-neutral-700">通过电影和文化交流，中国功夫在全球范围内广为人知和喜爱。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 红剧场 -->
+    <section id="red-theatre" class="py-20 bg-neutral-100">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-neutral-900 mb-4">红剧场 - 功夫表演</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-neutral-700 text-lg">
+                    红剧场的功夫表演是一场现场中国武术表演，展示令人惊叹的特技和特效。
+                </p>
+            </div>
+
+            <div class="bg-white rounded-xl overflow-hidden shadow-elegant mb-12 animate-fade-in" data-scroll>
+                <div class="md:flex">
+                    <div class="md:w-1/2">
+                        <img src="https://picsum.photos/id/1045/800/600" alt="红剧场功夫表演" class="w-full h-full object-cover">
+                    </div>
+                    <div class="md:w-1/2 p-8 md:p-12">
+                        <h3 class="text-2xl font-semibold text-neutral-900 mb-4">少林功夫传奇</h3>
+                        <p class="text-neutral-700 mb-4 leading-relaxed">
+                            红剧场的功夫表演生动地描绘了一个年轻和尚克服重重困难成为功夫大师的故事。
+                        </p>
+                        <p class="text-neutral-700 mb-4 leading-relaxed">
+                            起初，一个小男孩痛苦地离开母亲，前往少林寺学习功夫。然后他被发现在寺庙外徘徊。一位老和尚收养了他，并教他各种武术流派。很快，他掌握了许多技能，包括飞踢、跳跃、蛇拳、猴拳、虎拳和醉拳。然而，一个人的成长道路上总是充满荆棘。小和尚遇到了困难、欲望和诱惑，但他最终成功地征服了所有这些，并获得了顿悟。
+                        </p>
+                        <p class="text-neutral-700 mb-6 leading-relaxed">
+                            表演分为七幕，由年轻的中国功夫练习者表演舞蹈、功夫特技、惊险动作和柔术。预订红剧场的少林功夫表演门票，准备一场视觉盛宴。
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-6">
+                            <span class="bg-primary/10 text-primary text-sm font-medium py-1 px-3 rounded-full">武术表演</span>
+                            <span class="bg-primary/10 text-primary text-sm font-medium py-1 px-3 rounded-full">特技特效</span>
+                            <span class="bg-primary/10 text-primary text-sm font-medium py-1 px-3 rounded-full">文化体验</span>
+                            <span class="bg-primary/10 text-primary text-sm font-medium py-1 px-3 rounded-full">亲子活动</span>
+                        </div>
+                        <a href="#info" class="inline-block bg-primary hover:bg-primary/90 text-white font-medium py-2 px-6 rounded-md transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+                            查看演出信息 <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 地址和交通 -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl p-8 shadow-elegant hover:shadow-hover transition-all duration-300 animate-slide-up" data-scroll>
+                    <h3 class="text-xl font-semibold text-neutral-900 mb-4 flex items-center">
+                        <i class="fas fa-map-marker-alt text-primary mr-3"></i> 地址
+                    </h3>
+                    <p class="text-neutral-700">
+                        北京市东城区幸福大街44号
+                    </p>
+                    <div class="mt-6">
+                        <div class="h-64 rounded-lg overflow-hidden">
+                            <!-- 这里是地图，使用图片代替 -->
+                            <img src="https://picsum.photos/id/1048/800/600" alt="红剧场地图位置" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-8 shadow-elegant hover:shadow-hover transition-all duration-300 animate-slide-up delay-100" data-scroll>
+                    <h3 class="text-xl font-semibold text-neutral-900 mb-4 flex items-center">
+                        <i class="fas fa-directions text-primary mr-3"></i> 交通指南
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex">
+                            <div class="bg-primary/10 p-2 rounded-full mr-4 flex-shrink-0">
+                                <i class="fas fa-bus text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-neutral-900 mb-1">公交路线</h4>
+                                <p class="text-neutral-700">
+                                    乘坐6路、8路、34路、35路、36路、41路、54路、60路、72路、116路、957路或958路公交车到北京体育馆站。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="bg-primary/10 p-2 rounded-full mr-4 flex-shrink-0">
+                                <i class="fas fa-subway text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-neutral-900 mb-1">地铁路线</h4>
+                                <p class="text-neutral-700">
+                                    乘坐地铁7号线到广渠门内站。从D口出站，向西步行约500米（550码）。然后向南步行约1公里（0.6英里）即可到达红剧场。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 演出信息 -->
+    <section id="info" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-neutral-900 mb-4">演出信息</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-neutral-700 text-lg">
+                    了解红剧场功夫表演的详细信息，包括开放时间、表演时间表和门票价格。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 开放时间 -->
+                <div class="bg-white rounded-xl p-8 shadow-elegant border border-neutral-200 hover:shadow-hover transition-all duration-300 transform hover:-translate-y-1 animate-fade-in" data-scroll>
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-clock text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-neutral-900 mb-4">开放时间</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center pb-3 border-b border-neutral-200">
+                            <span class="text-neutral-700">周一至周日</span>
+                            <span class="font-medium text-neutral-900">17:30 - 21:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 表演时间表 -->
+                <div class="bg-white rounded-xl p-8 shadow-elegant border border-neutral-200 hover:shadow-hover transition-all duration-300 transform hover:-translate-y-1 animate-fade-in delay-100" data-scroll>
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-calendar-alt text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-neutral-900 mb-4">表演时间表</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center pb-3 border-b border-neutral-200">
+                            <span class="text-neutral-700">日常表演</span>
+                            <span class="font-medium text-neutral-900">19:30 - 20:50</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-3 border-b border-neutral-200">
+                            <span class="text-neutral-700">特别场次</span>
+                            <span class="font-medium text-neutral-900">请提前查询</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 门票价格 -->
+                <div class="bg-white rounded-xl p-8 shadow-elegant border border-neutral-200 hover:shadow-hover transition-all duration-300 transform hover:-translate-y-1 animate-fade-in delay-200" data-scroll>
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-ticket-alt text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-neutral-900 mb-4">门票价格</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center pb-3 border-b border-neutral-200">
+                            <span class="text-neutral-700">红VIP区</span>
+                            <span class="font-medium text-neutral-900">880 元</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-3 border-b border-neutral-200">
+                            <span class="text-neutral-700">橙区</span>
+                            <span class="font-medium text-neutral-900">480 元</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-3 border-b border-neutral-200">
+                            <span class="text-neutral-700">粉区</span>
+                            <span class="font-medium text-neutral-900">380 元</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-neutral-700">绿区</span>
+                            <span class="font-medium text-neutral-900">280 元</span>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <a href="#" class="block w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-md text-center transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+                            立即预订 <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 预订表单 -->
+    <section class="py-20 bg-neutral-900 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">预订您的文化体验</h2>
+                    <p class="text-white/80 text-lg max-w-2xl mx-auto">
+                        填写下方表单预订京剧或功夫表演门票，开启您的传统文化之旅
+                    </p>
+                </div>
+
+                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 md:p-12 shadow-xl">
+                    <form>
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-white/80 mb-2">姓名</label>
+                                <input type="text" id="name" class="w-full bg-white/10 border border-white/20 rounded-md px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder="请输入您的姓名">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-white/80 mb-2">电子邮箱</label>
+                                <input type="email" id="email" class="w-full bg-white/10 border border-white/20 rounded-md px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder="请输入您的电子邮箱">
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="phone" class="block text-white/80 mb-2">手机号码</label>
+                                <input type="tel" id="phone" class="w-full bg-white/10 border border-white/20 rounded-md px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder="请输入您的手机号码">
+                            </div>
+                            <div>
+                                <label for="date" class="block text-white/80 mb-2">日期</label>
+                                <input type="date" id="date" class="w-full bg-white/10 border border-white/20 rounded-md px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="performance" class="block text-white/80 mb-2">选择表演</label>
+                            <select id="performance" class="w-full bg-white/10 border border-white/20 rounded-md px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+                                <option value="">请选择表演类型</option>
+                                <option value="peking-opera">京剧表演</option>
+                                <option value="kungfu">功夫表演</option>
+                                <option value="both">两者皆选</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label for="tickets" class="block text-white/80 mb-2">票数</label>
+                            <div class="flex">
+                                <button type="button" class="bg-white/10 border border-white/20 rounded-l-md px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" id="decrement">-</button>
+                                <input type="number" id="tickets" value="2" min="1" class="w-full bg-white/10 border-y border-white/20 px-4 py-3 text-white text-center focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+                                <button type="button" class="bg-white/10 border border-white/20 rounded-r-md px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" id="increment">+</button>
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <label for="message" class="block text-white/80 mb-2">特殊要求（可选）</label>
+                            <textarea id="message" rows="4" class="w-full bg-white/10 border border-white/20 rounded-md px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder="如有任何特殊要求，请在此说明"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 rounded-md transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                                提交预订 <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-neutral-800 text-white/80 py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <span class="text-primary text-2xl"><i class="fas fa-university"></i></span>
+                        <span class="font-bold text-xl text-white">北京文化体验</span>
+                    </div>
+                    <p class="mb-6">
+                        探索京剧与中国功夫的千年文化精髓，感受传统艺术的独特魅力。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white/80 hover:text-primary transition-colors duration-200">
+                            <i class="fab fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-white/80 hover:text-primary transition-colors duration-200">
+                            <i class="fab fa-weibo text-xl"></i>
+                        </a>
+                        <a href="#" class="text-white/80 hover:text-primary transition-colors duration-200">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-white/80 hover:text-primary transition-colors duration-200">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold text-lg mb-4">快速链接</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#peking-opera" class="hover:text-primary transition-colors duration-200">京剧</a></li>
+                        <li><a href="#theatres" class="hover:text-primary transition-colors duration-200">剧院</a></li>
+                        <li><a href="#kungfu" class="hover:text-primary transition-colors duration-200">功夫</a></li>
+                        <li><a href="#red-theatre" class="hover:text-primary transition-colors duration-200">红剧场</a></li>
+                        <li><a href="#info" class="hover:text-primary transition-colors duration-200">演出信息</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold text-lg mb-4">联系我们</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-primary mt-1 mr-3"></i>
+                            <span>北京市东城区幸福大街44号</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-primary mr-3"></i>
+                            <span>+86 10 8888 8888</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-primary mr-3"></i>
+                            <span>info@pekingopera.com</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold text-lg mb-4">营业时间</h4>
+                    <ul class="space-y-2">
+                        <li class="flex justify-between">
+                            <span>周一至周五:</span>
+                            <span>17:30 - 21:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>周六至周日:</span>
+                            <span>17:00 - 21:30</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>节假日:</span>
+                            <span>17:00 - 22:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 mt-12 pt-8 text-center">
+                <p>&copy; 2025 北京文化体验. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white', 'shadow-md');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('bg-white', 'shadow-md');
+                navbar.classList.add('bg-transparent');
+            }
+        });
+
+        // 移动端菜单切换
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuToggle.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+            } else {
+                menuToggle.innerHTML = '<i class="fas fa-times text-xl"></i>';
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 如果是在移动设备上，点击后关闭菜单
+                    if (window.innerWidth < 768) {
+                        mobileMenu.classList.add('hidden');
+                        menuToggle.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+                    }
+                }
+            });
+        });
+
+        // 数字递增/递减
+        const incrementBtn = document.getElementById('increment');
+        const decrementBtn = document.getElementById('decrement');
+        const ticketCount = document.getElementById('tickets');
+
+        incrementBtn.addEventListener('click', () => {
+            ticketCount.value = parseInt(ticketCount.value) + 1;
+        });
+
+        decrementBtn.addEventListener('click', () => {
+            if (parseInt(ticketCount.value) > 1) {
+                ticketCount.value = parseInt(ticketCount.value) - 1;
+            }
+        });
+
+        // 滚动动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('[data-scroll]').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+    

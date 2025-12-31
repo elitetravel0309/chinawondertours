@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 Natural Wonders in China</title>
+    <!-- 外部资源CDN优化，确保字体与图标正常加载 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #388E3C;
+            --background-color: #F4F8F4;
+            --card-background: #FFFFFF;
+            --text-color: #37474F;
+            --heading-color: #1B5E20;
+            --light-text-color: #546E7A;
+            --border-color: #E0E0E0;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.12);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --transition-default: 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            padding: 0;
+            margin: 0;
+        }
+
+        .page-wrapper {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px 15px 50px;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 30px 20px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--secondary-color);
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
+                        url('https://mmbiz.qpic.cn/mmbiz_jpg/ibJn6TNYR2O4LqbFBRiaV51JXRAiaMkWdHDkzcGvnNibrVteSjcxmoI2y7QIBAc5g9JmEmWFNkBuuhibonVeeEtibPng/640?wx_fmt=jpeg&from=appmsg') no-repeat center center;
+            background-size: cover;
+            border-radius: var(--radius-md);
+        }
+
+        .page-header h1 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 700;
+            color: var(--heading-color);
+            margin: 0 0 10px;
+        }
+
+        .page-header h1 .fa-mountain {
+            margin-right: 15px;
+            color: var(--secondary-color);
+        }
+
+        .page-header .subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-color);
+            font-weight: 400;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .wonder-card {
+            background-color: var(--card-background);
+            margin-bottom: 35px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: transform var(--transition-default), box-shadow var(--transition-default);
+        }
+
+        .wonder-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-content {
+            padding: 25px 30px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .number-badge {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--card-background);
+            background-color: var(--primary-color);
+            min-width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .wonder-card h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 600;
+            color: var(--heading-color);
+            margin: 0;
+        }
+
+        .description {
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            margin-bottom: 20px;
+            font-style: italic;
+            color: var(--text-color);
+        }
+
+        .location {
+            font-size: 1em;
+            font-weight: 600;
+            color: var(--light-text-color);
+        }
+
+        .location i {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+
+        .image-gallery {
+            display: grid;
+            gap: 10px;
+            padding: 0 30px 30px;
+        }
+
+        .image-gallery.cols-2 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 响应式网格优化 */
+        }
+
+        .image-gallery.cols-1 img {
+            width: 100%;
+            height: auto;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+            /* 图片懒加载优化，提升性能 */
+            loading: lazy;
+            transition: opacity var(--transition-default);
+        }
+
+        .image-gallery img:hover {
+            opacity: 0.95;
+        }
+
+        .tips-section {
+            background-color: #E8F5E9;
+            padding: 30px;
+            border-radius: var(--radius-md);
+            margin-top: 40px;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .tips-section h2 {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            color: var(--heading-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .tips-section h2 i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+
+        .tips-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tips-section li {
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .tips-section li:last-child {
+            margin-bottom: 0; /* 移除最后一个列表项的下边距 */
+        }
+
+        .tips-section li i {
+            color: var(--secondary-color);
+            margin-right: 12px;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        /* 响应式优化：移动端适配 */
+        @media (max-width: 768px) {
+            .card-header {
+                padding-bottom: 12px;
+                margin-bottom: 15px;
+            }
+
+            .number-badge {
+                min-width: 38px;
+                height: 38px;
+                font-size: 1.5em;
+                margin-right: 15px;
+            }
+
+            .card-content {
+                padding: 20px 20px;
+            }
+
+            .image-gallery {
+                padding: 0 20px 20px;
+            }
+
+            .tips-section {
+                padding: 25px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-wrapper {
+                padding: 15px 10px 30px;
+            }
+
+            .page-header {
+                padding: 20px 15px;
+                margin-bottom: 30px;
+            }
+
+            .wonder-card {
+                margin-bottom: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="page-header">
+            <h1><i class="fa fa-mountain" aria-hidden="true"></i>Top 10 Natural Wonders in China</h1>
+            <p class="subtitle">China is home to some of the world's most stunning landscapes. As you plan your 2026 travel adventures, these top-rated natural wonders should not be missed💖</p>
+        </header>
+
+        <main>
+            <!-- 1. 九寨沟 -->
+            <section class="wonder-card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <span class="number-badge">1</span>
+                        <h2>Jiuzhaigou</h2>
+                    </div>
+                    <p class="description">A true "fairyland on Earth"! Vibrant lakes, snow-capped mountains reflected in crystal waters, and in autumn, it's like stepping into a storybook 🏞️</p>
+                    <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Location: Aba Tibetan & Qiang Autonomous Prefecture, Sichuan</p>
+                </div>
+                <div class="image-gallery cols-1">
+                     <img src="https://mmbiz.qpic.cn/mmbiz_jpg/ibJn6TNYR2O4LqbFBRiaV51JXRAiaMkWdHDkzcGvnNibrVteSjcxmoI2y7QIBAc5g9JmEmWFNkBuuhibonVeeEtibPng/640?wx_fmt=jpeg&from=appmsg" alt="Jiuzhaigou Scenery - Colorful lakes and snow-capped mountains">
+                </div>
+            </section>
+
+            <!-- 2. 张家界 -->
+            <section class="wonder-card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <span class="number-badge">2</span>
+                        <h2>Zhangjiajie</h2>
+                    </div>
+                    <p class="description">The filming location of Avatar! Unique sandstone pillars, floating clouds–it feels like another planet🌄</p>
+                    <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Location: Zhangjiajie, Hunan</p>
+                </div>
+                 <div class="image-gallery cols-2">
+                    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/ibJn6TNYR2O4LqbFBRiaV51JXRAiaMkWdHDcyhbGQTvyQL3qM25A4WECkHDplVKS2topN78WibESeSwW2eW2w0HB1A/640?wx_fmt=jpeg&from=appmsg" alt="Zhangjiajie Pillars - Unique sandstone landscape">
+                    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/ibJn6TNYR2O4LqbFBRiaV51JXRAiaMkWdHDxzic62r30aN9bI4YgOmd8qNes4BphQ2t0aKkmlBFFOAbuRGa0eqdNuA/640?wx_fmt=jpeg&from=appmsg" alt="Zhangjiajie View - Floating clouds over rock formations">
+                </div>
+            </section>
+
+            <!-- 3. 黄山 -->
+            <section class="wonder-card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <span class="number-badge">3</span>
+                        <h2>Huangshan (Yellow Mountain)</h2>
+                    </div>
+                    <p class="description">"After visiting the Five Great Mountains, you'll look at none; after Huangshan, all others pale." Sea of clouds, ancient pines, and bizarre rocks–breathtaking🌲</p>
+                    <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Location: Huangshan, Anhui</p>
+                </div>
+                <div class="image-gallery cols-1">
+                    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/ibJn6TNYR2O4LqbFBRiaV51JXRAiaMkWdHDibYXbQFag1mBPBaukBVAmUEJ4c4uNWzXWU1doqN2kHODI0icfKLzBiaOA/640?wx_fmt=jpeg&from=appmsg" alt="Huangshan Sea of Clouds - Misty mountain landscape with ancient pines">
+                </div>
+            </section>
+
+            <!-- 4. 桂林漓江 -->
+            <section class="wonder-card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <span class="number-badge">4</span>
+                        <h2>Li River, Guilin</h2>
+                    </div>
+                    <p class="description">"Guilin's scenery is the best under heaven." Drift along the Li River on a bamboo raft and experience a real-life painting🛶</p>
+                    <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Location: Guilin, Guangxi</p>
+                </div>
+                <div class="image-gallery cols-1">
+                    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/ibJn6TNYR2O4LqbFBRiaV51JXRAiaMkWdHDJSHM0ibZSq3K7E11qaJENLB2MMdeMKf0uVicicrnKhhMJAqkwlyvBoKkA/640?wx_fmt=jpeg&from=appmsg" alt="Li River - Scenic bamboo raft landscape with karst mountains">
+                </div>
+            </section>
+
+            <!-- 5. 稻城亚丁 -->
+            <section class="wonder-card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <span class="number-badge">5</span>
+                        <h2>Daocheng Yading</h2>
+                    </div>
+                    <p class="description">The "Last Shangri-La." Snowy peaks, vast grasslands, and pristine lakes–so pure it'll move you to tears🏔️</p>
+                    <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Location: Garze Tibetan Autonomous Prefecture, Sichuan</p>
+                </div>
+                <div class="image-gallery cols-1">
+                    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/ibJn6TNYR2O4LqbFBRiaV51JXRAiaMkWdHDvPic3D97YibZ7gGpK37ic3yG3iatPClzgxpTMctJfd1ko5Ypp9aKMbnjYg/640?wx_fmt=jpeg&from=appmsg" alt="Daocheng Yading - Snowy peaks and pristine alpine lakes">
+                </div>
+            </section>
+            
+            <!-- 6. 喀纳斯湖 -->
+            <section class="wonder-card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <span class="number-badge">6</span>
+                        <h2>Kanas Lake</h2>
+                    </div>
+                    <p class="description">Famous for its mysterious lake monster legend. In autumn, the colors explode like a painter's palette–unreal beauty🎨</p>
+                    <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Location: Altay, Xinjiang</p>
+                </div>
+                <div class="image-gallery cols-1">
+                    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/ibJn6TNYR2O4LqbFBRiaV51JXRAiaMkWdHDb2sUVpkV6amtcXR9aIYDF7O6HibicVyPfqCaK2lwK9Cjo1Xn82CfyLmw/640?wx_fmt=jpeg&from=appmsg" alt="Kanas Lake - Colorful autumn landscape around the lake">
+                </div>
+            </section>
+
+            <!-- 7. 青海湖 -->
+            <section class="wonder-card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <span class="number-badge">7</span>
+                        <h2>Qinghai Lake</h2>
+                    </div>
+                    <p class="description">China's largest inland lake. In summer, rapeseed flowers bloom along the turquoise waters–pure dreaminess🌼</p>
+                    <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Location: Hainan Tibetan Autonomous Prefecture, Qinghai</p>
+                </div>
+                <div class="image-gallery cols-1">
+                    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/ibJn6TNYR2O4LqbFBRiaV51JXRAiaMkWdHD11w7iae14bTokuiaaBOvMJKY0BCibQINKTUr98Rib00IETlKNU7evh0Yqw/640?wx_fmt=jpeg&from=appmsg" alt="Qinghai Lake - Turquoise water with blooming rapeseed flowers">
+                </div>
+            </section>
+            
+            <!-- 8. 香格里拉 -->
+            <section class="wonder-card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <span class="number-badge">8</span>
+                        <h2>Shangri-La</h2>
+                    </div>
+                    <p class="description">"The sun and moon in my heart." Snowy peaks, rolling grasslands, and sacred monasteries–the mystery and beauty of Tibet’s culture captured in one place🏞️</p>
+                    <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Location: Diqing Tibetan Autonomous Prefecture, Yunnan</p>
+                </div>
+                <div class="image-gallery cols-1">
+                     <img src="https://mmbiz.qpic.cn/mmbiz_jpg/ibJn6TNYR2O4LqbFBRiaV51JXRAiaMkWdHDPA8Pld8sZQIyPaic3cGyNE4fNSwmKjpqJO7qsCmWv8dKJtYBwYVtyibQ/640?wx_fmt=jpeg&from=appmsg" alt="Shangri-La - Sacred monasteries and grasslands with snowy peaks">
+                </div>
+            </section>
+
+            <!-- 9. 长白山天池 -->
+            <section class="wonder-card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <span class="number-badge">9</span>
+                        <h2>Changbai Mountain–Tianchi Lake</h2>
+                    </div>
+                    <p class="description">A crater lake with crystal-clear water. In winter, it's blanketed in snow and looks like a scene from a fairy tale❄️</p>
+                    <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Location: Yanbian Korean Autonomous Prefecture, Jilin</p>
+                </div>
+                <div class="image-gallery cols-2">
+                    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/ibJn6TNYR2O4LqbFBRiaV51JXRAiaMkWdHD9MG0uo9VQ8icBRadJiciaasC0LUpNKwvKf0Uyn1VbNub6ERcYlanYlQJA/640?wx_fmt=jpeg&from=appmsg" alt="Tianchi Lake 1 - Crystal clear crater lake waters">
+                    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/ibJn6TNYR2O4LqbFBRiaV51JXRAiaMkWdHDBGJPfr9JIMPG6z3bu6P5EuKluL5A3maD6kicdM8Hkhib3yiasndcYaDZg/640?wx_fmt=jpeg&from=appmsg" alt="Tianchi Lake 2 - Snow-blanketed winter landscape of the crater lake">
+                </div>
+            </section>
+
+            <!-- 10. 峨眉山 -->
+            <section class="wonder-card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <span class="number-badge">10</span>
+                        <h2>Mount Emei</h2>
+                    </div>
+                    <p class="description">A sacred Buddhist site with sea-of-clouds views, sunrises, and the mystical "Buddha’s light"–a spiritual and natural feast for the soul🙏</p>
+                    <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Location: Leshan, Sichuan</p>
+                </div>
+                <div class="image-gallery cols-1">
+                    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/ibJn6TNYR2O4LqbFBRiaV51JXRAiaMkWdHDtWq9FVgr5MJmMlX6zlwAPnicHZmXHic89ashPO0VntXegea22PabGgdA/640?wx_fmt=jpeg&from=appmsg" alt="Mount Emei - Sacred Buddhist site with sea of clouds">
+                </div>
+            </section>
+        </main>
+
+        <!-- 旅行贴士 -->
+        <section class="tips-section">
+            <h2><i class="fa fa-lightbulb-o" aria-hidden="true"></i>Travel Tips</h2>
+            <ul>
+                <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i><div>Each destination has its best travel season–plan ahead!</div></li>
+                <li><i class="fa fa-cloud" aria-hidden="true"></i><div>Weather in natural areas can change quickly; bring sun protection and warm clothes.</div></li>
+                <li><i class="fa fa-seedling" aria-hidden="true"></i><div>Respect nature: take only memories, leave only footprints! 💚</div></li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>
